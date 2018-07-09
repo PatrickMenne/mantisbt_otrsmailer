@@ -1,0 +1,40 @@
+= 1. Configure mail in MantisBT=
+The plugin reuses the EmailData class of MantisBT.
+So you need to configure email under /config/config_inc.php.
+An example config can be found in config_inc.php.sample in the 'Email Configuration'-section.
+
+You can skip this step, if you alraedy configured mail in MantisBt.
+
+= 2. Install plugin =
+1. Copy folder OtrsMailer to the plugins subdirectory
+2. Install plugin under Manage Plugins page (Manage->Tab 'Manage 'lugins')
+
+= 3. Adjust plugin's config=
+You can use the config view of the plugin.
+Go to the 'Manage Plugins' page (Manage->Manage Plugins) and click on plugin name to open config.
+You can also change the default values in OtrsMailerCustomConfig_inc.php.
+
+You have to at least adjust 3 config keys:
+
+1. OTRS URL: The URL of otrs
+
+'otrs_url_main' => 'https://localhost/otrs/index.pl',
+
+2. OTRS MailTo:
+The email that is used to generate tickets from mail.
+
+'otrs_mail_to' =>  'myotrs@localhost',
+
+3. Minimum access level for plugin:
+The security threshold to be able to access the plugin.
+Defaults to 90 (=Administrator).
+
+'view_page_mail_issue_threshold' => 90
+
+= 4. Test the plugin =
+Go to an issue page.
+The menu should now contain a 'Mail to OTRS(Preview)' link.
+Following this link opens the mail preview page.
+You can send a mail by clicking on the 'Send Mail' Button.
+
+

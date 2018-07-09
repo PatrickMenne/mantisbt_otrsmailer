@@ -1,0 +1,72 @@
+﻿<?php
+
+# issue_top_bar
+$s_plugin_OtrsMailer_link_mail_issue_preview = "Mail to OTRS (Preview)";
+$s_plugin_OtrsMailer_link_mail_issue_preview_tooltip = "Preview mail to OTRS before sending.";
+$s_plugin_OtrsMailer_link_mail_issue = "Mail to OTRS";
+$s_plugin_OtrsMailer_link_mail_issue_tooltip = "Directly send mail to OTRS without preview.";
+$s_plugin_OtrsMailer_link_open_otrs = "Open OTRS";
+$s_plugin_OtrsMailer_link_open_otrs_tooltip = "Open OTRS main page.";
+
+
+# page mail_issue
+$s_plugin_OtrsMailer_link_send_mail = "Send Mail";
+$s_plugin_OtrsMailer_link_back_to_issue = "Back to issue";
+$s_plugin_OtrsMailer_header_mail_issue = "Mail issue to OTRS";
+$s_plugin_OtrsMailer_preview = "Preview";
+$s_plugin_OtrsMailer_mail = "Mail";
+
+$s_plugin_OtrsMailer_email_to = "To";
+$s_plugin_OtrsMailer_subject = "Subject";
+$s_plugin_OtrsMailer_body = "Body";
+
+$s_plugin_OtrsMailer_msg_succ_mail_sent = "Mail sent successful";
+$s_plugin_OtrsMailer_msg_succ_note_mail_sent = "OtrsMailer: Mail sent to OTRS.";
+$s_plugin_OtrsMailer_msg_err_mail_sent_failed = "PROBLEMS SENDING MAIL TO";
+$s_plugin_OtrsMailer_msg_err_check_mail_settings = "Please check your php/mail server settings.";
+
+
+# page config_view
+$s_plugin_OtrsMailer_configuration = "Configuration";
+
+$s_plugin_OtrsMailer_otrs_url = "OTRS URL";
+$s_plugin_OtrsMailer_otrs_mail_to = "OTRS MailTo";
+$s_plugin_OtrsMailer_otrs_mail_subject_template = "OTRS Mail Subject Template";
+$s_plugin_OtrsMailer_otrs_mail_body_template = "OTRS Mail Body Template";
+$s_plugin_OtrsMailer_view_page_mail_issue_threshold = "Minimum access level to mail issues:";
+
+$s_plugin_OtrsMailer_limit_access_to_users_csv = "Limit access to specific users:";
+$s_plugin_OtrsMailer_limit_access_to_users_csv_explanation = "Only users in this list, have access to the plugin.<br/>Leave empty for no restrictions or add a comma separated list of usernames.";
+
+$s_plugin_OtrsMailer_add_note_to_issue = "Add note after mail sent:";
+$s_plugin_OtrsMailer_add_note_to_issue_explanation = "Adds a note to the issue, after an email was sent.<br/>Can be customized in language files (\$s_plugin_OtrsMailer_msg_succ_note_mail_sent).";
+$s_plugin_OtrsMailer_show_open_otrs_link = "Issue toolbar: Show \"Open OTRS\" link";
+$s_plugin_OtrsMailer_show_mail_direct_link = "Issue toolbar: Show \"Mail to\" link:<br/>(Mail without preview)";
+
+$s_plugin_OtrsMailer_reset = "Reset";
+$s_plugin_OtrsMailer_reset_explanation = "Reset to default values";
+$s_plugin_OtrsMailer_submit = "Submit";
+
+$s_plugin_OtrsMailer_header_available_placeholders = "Available placeholders";
+$s_plugin_OtrsMailer_header_available_placeholders_description = "Needs to be wrapped in &lt;...&gt; ( e.g. &lt;BUG_SUMMARY&gt; ).";
+
+$s_plugin_OtrsMailer_header_mail_body_template = "Mail Body Template";
+
+
+# template placeholder descriptions
+$s_plugin_OtrsMailer_placeholder_PLUGIN_NAME = 'Name of Plugin';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_VERSION = 'Name of Plugin';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_MANTIS_CURR_USER_NAME = 'Username of currently logged in user.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_ID = 'ID of the issue.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_URL = 'URL of the issue.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_PROJECT_NAME = 'Name of issue\'s project.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_ASSIGNEDTO_USERNAME = 'Username assigned to.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_REPORTER_USERNAME = 'Username of reporter.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_REPORTER_EMAIL = 'Email of reporter.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_PRIORITY = 'Issue priority.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_DESCRIPTION = 'Issue Description.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_STEPS_TO_REPRODUCE = 'Issue Steps to Reproduce.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_ADDITIONAL_INFO = 'Issue Additional Info.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_SUMMARY = 'Issue Summary.';
+
+?>

@@ -1,0 +1,72 @@
+﻿<?php
+
+# issue_top_bar
+$s_plugin_OtrsMailer_link_mail_issue_preview = "Mail an OTRS (Vorschau)";
+$s_plugin_OtrsMailer_link_mail_issue_preview_tooltip = "Vorschau vor Senden der Email an OTRS.";
+$s_plugin_OtrsMailer_link_mail_issue = "Mail an OTRS";
+$s_plugin_OtrsMailer_link_mail_issue_tooltip = "Mail direkt an OTRS senden (keine Vorschau).";
+$s_plugin_OtrsMailer_link_open_otrs = "Zu OTRS";
+$s_plugin_OtrsMailer_link_open_otrs_tooltip = "OTRS Startseite &ouml;ffnen.";
+
+
+# page mail_issue
+$s_plugin_OtrsMailer_link_send_mail = "Email verschicken";
+$s_plugin_OtrsMailer_link_back_to_issue = "Zurück zur Issue";
+$s_plugin_OtrsMailer_header_mail_issue = "Issue an OTRS mailen";
+$s_plugin_OtrsMailer_preview = "Vorschau";
+$s_plugin_OtrsMailer_mail = "Email";
+
+$s_plugin_OtrsMailer_email_to = "An";
+$s_plugin_OtrsMailer_subject = "Betreff";
+$s_plugin_OtrsMailer_body = "Nachricht";
+
+$s_plugin_OtrsMailer_msg_succ_mail_sent = "Email erfolgreich verschickt";
+$s_plugin_OtrsMailer_msg_succ_note_mail_sent = "OtrsMailer: Ticket an OTRS geschickt.";
+$s_plugin_OtrsMailer_msg_err_mail_sent_failed = "PROBLEM BEIM EMAILVERSAND";
+$s_plugin_OtrsMailer_msg_err_check_mail_settings = "Bitte Emaileinstellungen pr&uuml;fen.";
+
+
+# page config_view
+$s_plugin_OtrsMailer_configuration = "Konfiguration";
+
+$s_plugin_OtrsMailer_otrs_url = "OTRS URL";
+$s_plugin_OtrsMailer_otrs_mail_to = "OTRS Mail An";
+$s_plugin_OtrsMailer_otrs_mail_subject_template = "OTRS Mail Betreff Vorlage";
+$s_plugin_OtrsMailer_otrs_mail_body_template = "OTRS Mail Nachrichten Vorlage";
+$s_plugin_OtrsMailer_view_page_mail_issue_threshold = "Minimaler Access Level um Mails zu verschicken";
+
+$s_plugin_OtrsMailer_limit_access_to_users_csv = "Zugriff auf Plugina auf bestimmte Benutzer einschränken:";
+$s_plugin_OtrsMailer_limit_access_to_users_csv_explanation = "Leer oder Liste von Benutzernamen, die mit Kommas getrennt werden.";
+
+$s_plugin_OtrsMailer_add_note_to_issue = "Notiz hinzufügen, nach Mailversand";
+$s_plugin_OtrsMailer_add_note_to_issue_explanation = "Notiz hinzuf&uuml;gen, nachdem eine EMail verschickt wurde.<br/>Text kann &uuml;ber \$s_plugin_OtrsMailer_msg_succ_note_mail_sent in Sprachdateien angepasst werden.";
+$s_plugin_OtrsMailer_show_open_otrs_link = "OTRS &ouml;ffnen-Link in Issue-Men&uuml; anzeigen";
+$s_plugin_OtrsMailer_show_mail_direct_link = "Direktversandlink in Issue-Men&uuml; anzeigen";
+
+$s_plugin_OtrsMailer_reset = "Reset";
+$s_plugin_OtrsMailer_reset_explanation = "auf Standardwerte zur&uuml;cksetzen";
+$s_plugin_OtrsMailer_submit = "Submit";
+
+$s_plugin_OtrsMailer_header_available_placeholders = "Available placeholders";
+$s_plugin_OtrsMailer_header_available_placeholders_description = "(muss mit &lt;...&gt; umschlossen werden(e.g. &lt;BUG_SUMMARY&gt;)";
+
+$s_plugin_OtrsMailer_header_mail_body_template = "Mail Nachrichten Vorlage";
+
+
+# template placeholder descriptions
+$s_plugin_OtrsMailer_placeholder_PLUGIN_NAME = 'Name des Plugins.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_VERSION = 'Version des Plugins.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_MANTIS_CURR_USER_NAME = 'Name des aktuell eingeloggten Benutzers.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_ID = 'ID der issue.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_URL = 'URL dere.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_PROJECT_NAME = 'Name des Projekts der Issue.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_ASSIGNEDTO_USERNAME = 'Username zugewiesen.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_REPORTER_USERNAME = 'Username reporter.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_REPORTER_EMAIL = 'Email des reporters.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_PRIORITY = 'Issue priorit&auml;t.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_DESCRIPTION = 'Issue Beschreibung.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_STEPS_TO_REPRODUCE = 'Issue Steps to Reproduce.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_ADDITIONAL_INFO = 'Issue Zus&aaml;tzliche Infos.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_SUMMARY = 'Issue Zusammenfassung.';
+
+?>
