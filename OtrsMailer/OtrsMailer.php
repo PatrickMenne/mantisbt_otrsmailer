@@ -19,7 +19,7 @@ class OtrsMailerPlugin extends MantisPlugin {
         $this->description = 'Simple way to pass issues to OTRS via email.';        # Short description of the plugin
         $this->page = 'config_view';                                                # Default plugin page
 
-        $this->version = '1.0';                                                     # Plugin version string
+        $this->version = '1.1';                                                     # Plugin version string
         $this->requires = array(                                                    # Plugin dependencies
             'MantisCore' => '2.5.1'                                                 # Should always depend on an appropriate
                                                                                     # version of MantisBT
@@ -41,9 +41,10 @@ class OtrsMailerPlugin extends MantisPlugin {
         else 
         {
             return array(
+                'issue_id_tag_template' => '[M#<BUG_ID>]',                                                      # tag format for issue id
                 'otrs_url_main' => 'https://localhost/otrs/index.pl',                                           # url of otrs
                 'otrs_mail_to' =>  'myotrs@localhost',                                                          # mail for otrs mailtickets
-                'otrs_mail_subject_template' => "<BUG_SUMMARY> [M#<BUG_ID>]",                                   # template for mail subject
+                'otrs_mail_subject_template' => "<BUG_SUMMARY> <BUG_ID_TAG>",                                   # template for mail subject
                 'otrs_mail_body_template' => "" .                                                               # template for mail body
                     "===============================================================================\n" . 
                     "  MantisUrl: <BUG_URL>\n" . 
@@ -74,7 +75,8 @@ class OtrsMailerPlugin extends MantisPlugin {
                     'limit_access_to_users_csv' => '',                  // leave empty for no filtering, otherwise comma separated list of usernames. Default: empty.
                     'add_note_after_mail_sent' => false,                // if true, adds a note to the issue, after a mail was sent. Default: false.
                     'issue_menu_show_add_otrs_open_link' => true,       // customize issue menu: display open otrs link. Default: true.
-                    'issue_menu_show_mail_issue_direct_link' => false   // customize issue menu: display "direct" send mail link. Default: false.
+                    'issue_menu_show_mail_issue_direct_link' => false,  // customize issue menu: display "direct" send mail link. Default: false.
+                    'issue_menu_show_otrs_search_link' => true          // customize issue menu: display search otrs link. Default: true.
                 );
         }
     }
@@ -147,12 +149,12 @@ class OtrsMailerPlugin extends MantisPlugin {
         $aLinks = array();
 
         #array_push($sLinks, MantisHtmlBuilder::Current()->page_generate_link_mail_issue_preview($p_chained_param));
-        $aLinks[plugin_lang_get('link_mail_issue_preview')] = plugin_page('mail_issue').'&bug_id='.$p_chained_param.'&action=preview';
+        $aLinks[plugin_lang_get('link_mail_issue_preview')] = plugin_page('mail_issue').'&bug_id=' . $p_chained_param . '&action=preview';
 
         if( plugin_config_get( 'issue_menu_show_mail_issue_direct_link' ) == true ){
 
             #array_push($aLinks, MantisHtmlBuilder::Current()->page_generate_link_mail_issue_send($p_chained_param) );
-            $aLinks[plugin_lang_get('link_mail_issue')] = plugin_page('mail_issue').'&bug_id='.$p_chained_param.'&action=send';
+            $aLinks[plugin_lang_get('link_mail_issue')] = plugin_page('mail_issue').'&bug_id=' . $p_chained_param . '&action=send';
             
         }
 
@@ -162,7 +164,13 @@ class OtrsMailerPlugin extends MantisPlugin {
             $aLinks[plugin_lang_get('link_open_otrs')] = plugin_config_get('otrs_url_main');
             
         }
+
+        if( plugin_config_get( 'issue_menu_show_otrs_search_link' ) == true ){
+
+            $aLinks[plugin_lang_get('link_open_otrs_search_title')] = plugin_config_get('otrs_url_main') . '?Action=AgentTicketSearch;Subaction=Search;Title=' . urlencode ( $this->template_build_bug_id_tag( $p_chained_param )); #. urlencode ('[M#' . $p_chained_param . ']'); 
         
+        }
+     
         return $aLinks;
     }
     
@@ -296,7 +304,7 @@ class OtrsMailerPlugin extends MantisPlugin {
      * @return string
      */
     function build_mail_subject( $p_bug ){
-        return sprintf( $this->template_replace_placeholdes(plugin_config_get('otrs_mail_subject_template'), $p_bug));
+        return sprintf( $this->template_replace_placeholders(plugin_config_get('otrs_mail_subject_template'), $p_bug));
     }
 
     /**
@@ -319,14 +327,16 @@ class OtrsMailerPlugin extends MantisPlugin {
      * @param object $p_bug  bug instance.
      * @return string
      */
-    function template_replace_placeholdes( $p_template, $p_bug ) {
+    function template_replace_placeholders( $p_template, $p_bug ) {
     
         $p_template = str_replace ( '<PLUGIN_NAME>', $this->name, $p_template );
         $p_template = str_replace ( '<PLUGIN_VERSION>', $this->version, $p_template );
         
         $p_template = str_replace ( '<MANTIS_CURR_USER_NAME>', user_get_field(auth_get_current_user_id(), 'username'), $p_template );
 
-        $p_template = str_replace ( '<BUG_ID>', $p_bug->id, $p_template );
+
+        $p_template = $this->template_replace_placeholder_bug_id_tag( $p_template, $p_bug_id);
+        $p_template = $this->template_replace_placeholder_bug_id( $p_template, $p_bug->id);
         $p_template = str_replace ( '<BUG_URL>', config_get( 'path' ).string_get_bug_view_url($p_bug->id), $p_template );
         $p_template = str_replace ( '<BUG_PROJECT_NAME>', project_get_name( $p_bug->project_id ), $p_template );
         $p_template = str_replace ( '<BUG_ASSIGNEDTO_USERNAME>', user_get_name( $p_bug->handler_id), $p_template );
@@ -341,6 +351,26 @@ class OtrsMailerPlugin extends MantisPlugin {
         return $p_template;
     }
 
+    private function template_replace_placeholder_bug_id( $p_template, $p_bug_id ) {
+
+        $p_template = str_replace ( '<BUG_ID>', $p_bug_id, $p_template );
+        return $p_template;
+
+    }
+
+    function template_replace_placeholder_bug_id_tag( $p_template, $p_bug_id ) {
+
+        $p_template = str_replace ( '<BUG_ID_TAG>', $this->template_build_bug_id_tag( $p_bug_id ), $p_template );
+        return $p_template;
+
+    }
+
+    function template_build_bug_id_tag( $p_bug_id ) {
+
+        $p_template = plugin_config_get('issue_id_tag_template');
+        return $this->template_replace_placeholder_bug_id( $p_template, $p_bug_id );
+     }
+
     /**
      * Returns list of available placeholders as array. 
      * Key contains name of placeholder, value is i18n descpription.
@@ -350,14 +380,11 @@ class OtrsMailerPlugin extends MantisPlugin {
         $t_a =  array(
                 'PLUGIN_NAME'=> plugin_lang_get('placeholder_PLUGIN_NAME'),
                 'PLUGIN_VERSION'=> plugin_lang_get('placeholder_PLUGIN_VERSION'),
-                'MANTIS_CURR_USER_NAME'=> plugin_lang_get('placeholder_PLUGIN_MANTIS_CURR_USER_NAME')
-                ,
-                'BUG_ID'=> plugin_lang_get('placeholder_PLUGIN_BUG_ID')
-                ,
-                'BUG_URL'=> plugin_lang_get('placeholder_PLUGIN_BUG_URL')
-                ,
-                'BUG_PROJECT_NAME'=> plugin_lang_get('placeholder_PLUGIN_BUG_PROJECT_NAME')
-                ,
+                'MANTIS_CURR_USER_NAME'=> plugin_lang_get('placeholder_PLUGIN_MANTIS_CURR_USER_NAME'),
+                'BUG_ID'=> plugin_lang_get('placeholder_PLUGIN_BUG_ID'),
+                'BUG_ID_TAG' => plugin_lang_get('placeholder_PLUGIN_BUG_ID_TAG'),
+                'BUG_URL'=> plugin_lang_get('placeholder_PLUGIN_BUG_URL'),
+                'BUG_PROJECT_NAME'=> plugin_lang_get('placeholder_PLUGIN_BUG_PROJECT_NAME'),
                 'BUG_ASSIGNEDTO_USERNAME'=> plugin_lang_get('placeholder_PLUGIN_BUG_ASSIGNEDTO_USERNAME'),
                 'BUG_REPORTER_USERNAME'=>  plugin_lang_get('placeholder_PLUGIN_BUG_REPORTER_USERNAME'),
                 'BUG_REPORTER_EMAIL'=> plugin_lang_get('placeholder_PLUGIN_BUG_REPORTER_EMAIL'),

@@ -7,7 +7,8 @@ $s_plugin_OtrsMailer_link_mail_issue = "Mail an OTRS";
 $s_plugin_OtrsMailer_link_mail_issue_tooltip = "Mail direkt an OTRS senden (keine Vorschau).";
 $s_plugin_OtrsMailer_link_open_otrs = "Zu OTRS";
 $s_plugin_OtrsMailer_link_open_otrs_tooltip = "OTRS Startseite &ouml;ffnen.";
-
+$s_plugin_OtrsMailer_link_open_otrs_search_title = "Suche in OTRS";
+$s_plugin_OtrsMailer_link_open_otrs_search_title_tooltip = "Issue in OTRS suchen (per Titel)";
 
 # page mail_issue
 $s_plugin_OtrsMailer_link_send_mail = "Email verschicken";
@@ -31,6 +32,7 @@ $s_plugin_OtrsMailer_configuration = "Konfiguration";
 
 $s_plugin_OtrsMailer_otrs_url = "OTRS URL";
 $s_plugin_OtrsMailer_otrs_mail_to = "OTRS Mail An";
+$s_plugin_OtrsMailer_issue_id_tag_template = "Bug ID Tag";
 $s_plugin_OtrsMailer_otrs_mail_subject_template = "OTRS Mail Betreff Vorlage";
 $s_plugin_OtrsMailer_otrs_mail_body_template = "OTRS Mail Nachrichten Vorlage";
 $s_plugin_OtrsMailer_view_page_mail_issue_threshold = "Minimaler Access Level um Mails zu verschicken";
@@ -42,6 +44,7 @@ $s_plugin_OtrsMailer_add_note_to_issue = "Notiz hinzufügen, nach Mailversand";
 $s_plugin_OtrsMailer_add_note_to_issue_explanation = "Notiz hinzuf&uuml;gen, nachdem eine EMail verschickt wurde.<br/>Text kann &uuml;ber \$s_plugin_OtrsMailer_msg_succ_note_mail_sent in Sprachdateien angepasst werden.";
 $s_plugin_OtrsMailer_show_open_otrs_link = "OTRS &ouml;ffnen-Link in Issue-Men&uuml; anzeigen";
 $s_plugin_OtrsMailer_show_mail_direct_link = "Direktversandlink in Issue-Men&uuml; anzeigen";
+$s_plugin_OtrsMailer_show_open_otrs_search_title = "Suche in OTRS" OTRS\" in Issue-Men&uuml; anzeigen:<br/>";
 
 $s_plugin_OtrsMailer_reset = "Reset";
 $s_plugin_OtrsMailer_reset_explanation = "auf Standardwerte zur&uuml;cksetzen";
@@ -58,6 +61,7 @@ $s_plugin_OtrsMailer_placeholder_PLUGIN_NAME = 'Name des Plugins.';
 $s_plugin_OtrsMailer_placeholder_PLUGIN_VERSION = 'Version des Plugins.';
 $s_plugin_OtrsMailer_placeholder_PLUGIN_MANTIS_CURR_USER_NAME = 'Name des aktuell eingeloggten Benutzers.';
 $s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_ID = 'ID der issue.';
+$s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_ID_TAG = 'Tag/Abk&uuml;rzung f&uuml;r issue ID.';
 $s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_URL = 'URL dere.';
 $s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_PROJECT_NAME = 'Name des Projekts der Issue.';
 $s_plugin_OtrsMailer_placeholder_PLUGIN_BUG_ASSIGNEDTO_USERNAME = 'Username zugewiesen.';

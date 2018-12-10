@@ -20,7 +20,8 @@ $t_add_note_after_mail_sent = plugin_config_get( 'add_note_after_mail_sent' );
 $t_issue_menu_show_add_otrs_open_link = plugin_config_get( 'issue_menu_show_add_otrs_open_link' );
 $t_issue_menu_show_mail_issue_direct_link = plugin_config_get( 'issue_menu_show_mail_issue_direct_link' );
 $t_limit_access_to_users_csv = plugin_config_get( 'limit_access_to_users_csv' );
-
+$t_issue_menu_show_otrs_search_link = plugin_config_get( 'issue_menu_show_otrs_search_link' );
+$t_issue_id_tag_template = plugin_config_get( 'issue_id_tag_template' );
 ?>
 
 <?php
@@ -31,6 +32,12 @@ event_signal( 'EVENT_OTRSMAILER_LAYOUT_WIDGET_BODY_BEGIN' );
 <form action="<?php echo plugin_page( 'config_update' ) ?>" method="post">
     <?php echo form_security_field( 'plugin_OTRSMailer_config_update' ) ?>
     <table class="table table-bordered table-condensed">
+        <tr <?php echo helper_alternate_class() ?>>
+            <td class="category"><?php echo plugin_lang_get('issue_id_tag_template'); ?></td>
+            <td>
+                <input name="issue_id_tag_template" size="100" value="<?php echo string_attribute( $t_issue_id_tag_template); ?>"/>
+            </td>
+        </tr>
         <tr <?php echo helper_alternate_class() ?>>
             <td class="category"><?php echo plugin_lang_get('otrs_url'); ?></td>
             <td>
@@ -89,6 +96,12 @@ event_signal( 'EVENT_OTRSMAILER_LAYOUT_WIDGET_BODY_BEGIN' );
             <td class="category"><?php echo plugin_lang_get('show_mail_direct_link'); ?></td>
             <td>
                 <input type="checkbox" name="issue_menu_show_mail_issue_direct_link" <?php if($t_issue_menu_show_mail_issue_direct_link == 1) {echo ' checked ';} else {echo '';} ?> /></span>
+            </td>
+        </tr>
+        <tr <?php echo helper_alternate_class() ?>>
+            <td class="category"><?php echo plugin_lang_get('show_open_otrs_search_title'); ?></td>
+            <td>
+                <input type="checkbox" name="issue_menu_show_otrs_search_link" <?php if($t_issue_menu_show_otrs_search_link == 1) {echo ' checked ';} else {echo '';} ?> /></span>
             </td>
         </tr>
         <tr <?php echo helper_alternate_class() ?>>

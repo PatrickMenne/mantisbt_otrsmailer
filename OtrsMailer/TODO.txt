@@ -1,3 +1,10 @@
+* CHANGLOG FILE
 * custom fields in mail template
 * code cleanup
 * code comments
+
+############################
+Done:
+############################
+* config: enable/disable search in otrs button
+* config: search pattern for title search / issue tag

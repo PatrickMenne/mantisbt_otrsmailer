@@ -28,15 +28,16 @@ $s_OtrsMailerConfig_otrs_mail_body_template = "" .
 
 
 $a_OtrsMailerConfig = array(
+        'issue_id_tag_template' => '[M#<BUG_ID>]',
         'otrs_url_main' => 'https://localhost/otrs/index.pl',                       
         'otrs_mail_to' =>  'myotrs@localhost',
-        'otrs_mail_subject_template' => "<BUG_SUMMARY> [M#<BUG_ID>]",
+        'otrs_mail_subject_template' => "<BUG_SUMMARY> <BUG_ID_TAG>",
         'otrs_mail_body_template' => $s_OtrsMailerConfig_otrs_mail_body_template,
         'view_page_mail_issue_threshold' => 90,
         'limit_access_to_users_csv' => '',
         'add_note_after_mail_sent' => false,
         'issue_menu_show_add_otrs_open_link' => false,
-        'issue_menu_show_mail_issue_direct_link' => false
-
+        'issue_menu_show_mail_issue_direct_link' => false,
+        'issue_menu_show_otrs_search_link' => true
     );
 ?>
